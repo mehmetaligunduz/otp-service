@@ -21,7 +21,7 @@ public class OtpScheduler {
 
     }
 
-    @Scheduled(cron = "0 */60 * ? * *")
+    @Scheduled(cron = "${schedule.cron}")
     public void clearExpiredOtpCodes() {
         otpService.clear();
         log.info("Expired otp codes have cleared");
