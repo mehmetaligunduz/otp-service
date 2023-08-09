@@ -5,20 +5,14 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-@Getter
-@Setter
-@AllArgsConstructor
 public class OtpEntity {
 
-    private String owner;
+    private final String owner;
 
-    private String code;
+    @Getter
+    private final String code;
 
-    private LocalDateTime createdAt;
-
-    public OtpEntity() {
-        this.createdAt = LocalDateTime.now();
-    }
+    private final LocalDateTime createdAt;
 
     public OtpEntity(String owner, String code) {
         this.owner = owner;
