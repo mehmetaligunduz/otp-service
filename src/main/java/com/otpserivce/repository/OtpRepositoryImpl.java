@@ -3,7 +3,9 @@ package com.otpserivce.repository;
 import com.otpserivce.entity.OtpEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -27,10 +29,19 @@ public class OtpRepositoryImpl implements OtpRepository {
 
     @Override
     public void clear() {
+
+        List<String> removeItemList = new ArrayList<>();
+
+        if (codes.isEmpty())
+            return;
+
         codes.forEach((k, v) -> {
             if (v.isExpired())
-                codes.remove(k);
+                removeItemList.add(k);
         });
+
+        removeItemList.forEach(codes::remove);
+
     }
 
     @Override

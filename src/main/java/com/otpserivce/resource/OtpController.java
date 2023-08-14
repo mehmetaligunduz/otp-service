@@ -15,7 +15,7 @@ public class OtpController {
     private final OtpService otpService;
 
     @PostMapping("/{owner}")
-    public ResponseEntity<String> generateOtp(@PathVariable String owner) {
+    public ResponseEntity<String> generateOtp(@PathVariable("owner") String owner) {
         final String code = otpService.generateCode(owner);
         return new ResponseEntity<>(code, HttpStatus.OK);
     }
@@ -26,5 +26,10 @@ public class OtpController {
         return new ResponseEntity<>(verify, HttpStatus.OK);
     }
 
+    @GetMapping("/{owner}")
+    public ResponseEntity<String> getOtp(@PathVariable("owner") String owner) {
+        String code = otpService.getCode(owner);
+        return new ResponseEntity<>(code, HttpStatus.OK);
+    }
 
 }

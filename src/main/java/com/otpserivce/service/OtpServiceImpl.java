@@ -40,6 +40,20 @@ public class OtpServiceImpl implements OtpService {
     }
 
     @Override
+    public String getCode(String owner) {
+
+        final OtpEntity otpEntity = otpRepository.get(owner);
+        
+        if (Objects.isNull(otpEntity))
+            return null;
+
+        if (otpEntity.isExpired())
+            return null;
+
+        return otpEntity.getCode();
+    }
+
+    @Override
     public void clear() {
         otpRepository.clear();
     }
