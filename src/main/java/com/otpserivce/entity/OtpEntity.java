@@ -1,7 +1,5 @@
 package com.otpserivce.entity;
 
-import lombok.*;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
