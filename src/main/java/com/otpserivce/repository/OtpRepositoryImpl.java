@@ -14,7 +14,7 @@ public class OtpRepositoryImpl implements OtpRepository {
     private final Map<String, OtpEntity> codes;
 
     public OtpRepositoryImpl() {
-        this.codes = new HashMap<>();
+        codes = new HashMap<>();
     }
 
     @Override

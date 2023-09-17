@@ -1,6 +1,6 @@
 package com.otpserivce.resource;
 
-import com.otpserivce.common.request.VerifyOtpRequest;
+import com.otpserivce.request.VerifyOtpRequest;
 import com.otpserivce.service.OtpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,12 +24,6 @@ public class OtpController {
     public ResponseEntity<Boolean> verifyOtp(@RequestBody VerifyOtpRequest request) {
         boolean verify = otpService.verify(request.getOwner(), request.getCode());
         return new ResponseEntity<>(verify, HttpStatus.OK);
-    }
-
-    @GetMapping("/{owner}")
-    public ResponseEntity<String> getOtp(@PathVariable("owner") String owner) {
-        String code = otpService.getCode(owner);
-        return new ResponseEntity<>(code, HttpStatus.OK);
     }
 
 }

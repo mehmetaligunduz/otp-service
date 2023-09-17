@@ -9,7 +9,6 @@ public class OtpEntity {
 
     private final String owner;
 
-    @Getter
     private final String code;
 
     private final LocalDateTime createdAt;
@@ -17,11 +16,14 @@ public class OtpEntity {
     public OtpEntity(String owner, String code) {
         this.owner = owner;
         this.code = code;
-        this.createdAt = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 
     public boolean isExpired() {
-        return Math.abs(ChronoUnit.SECONDS.between(createdAt, LocalDateTime.now())) > 120;
+        return Math
+                .abs(ChronoUnit
+                        .SECONDS
+                        .between(createdAt, LocalDateTime.now())) > 120;
     }
 
     public boolean codeIsExist(String code) {
@@ -29,7 +31,9 @@ public class OtpEntity {
     }
 
     public boolean isVerified(String owner, String code) {
-        return this.owner.equals(owner) && this.code.equals(code) && Boolean.FALSE.equals(isExpired());
+        return this.owner.equals(owner) &&
+                this.code.equals(code) &&
+                Boolean.FALSE.equals(isExpired());
     }
 
 }

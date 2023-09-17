@@ -1,4 +1,4 @@
-package com.otpserivce.common.schedule;
+package com.otpserivce.schedule;
 
 import com.otpserivce.service.OtpService;
 import lombok.RequiredArgsConstructor;
@@ -13,18 +13,12 @@ public class OtpScheduler {
 
     private final OtpService otpService;
 
-    private static final Logger log;
-
-    static {
-
-        log = LoggerFactory.getLogger(OtpScheduler.class);
-
-    }
+    private static final Logger logger = LoggerFactory.getLogger(OtpScheduler.class);
 
     @Scheduled(cron = "${schedule.cron}")
     public void clearExpiredOtpCodes() {
         otpService.clear();
-        log.info("Expired otp codes have cleared");
+        logger.info("Expired otp codes have cleared");
     }
 
 }

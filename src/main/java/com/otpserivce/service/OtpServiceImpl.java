@@ -16,13 +16,8 @@ public class OtpServiceImpl implements OtpService {
 
     private static final String DECIMAL_FORMAT = "000000";
 
-    private static final DecimalFormat decimalFormat;
+    private static final DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
 
-    static {
-
-        decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
-
-    }
 
     @Override
     public String generateCode(String owner) {
@@ -37,20 +32,6 @@ public class OtpServiceImpl implements OtpService {
         if (Objects.isNull(otpEntity))
             return false;
         return otpEntity.isVerified(owner, code);
-    }
-
-    @Override
-    public String getCode(String owner) {
-
-        final OtpEntity otpEntity = otpRepository.get(owner);
-        
-        if (Objects.isNull(otpEntity))
-            return null;
-
-        if (otpEntity.isExpired())
-            return null;
-
-        return otpEntity.getCode();
     }
 
     @Override

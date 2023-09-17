@@ -1,4 +1,4 @@
-package com.otpserivce.common.request;
+package com.otpserivce.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

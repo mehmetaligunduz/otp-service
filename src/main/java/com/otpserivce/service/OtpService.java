@@ -6,8 +6,6 @@ public interface OtpService {
 
     boolean verify(String owner, String code);
 
-    String getCode(String owner);
-
     void clear();
 
 }
