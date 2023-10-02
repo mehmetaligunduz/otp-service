@@ -2,7 +2,7 @@ package com.otpserivce.service;
 
 public interface OtpService {
 
-    String generateCode(String owner);
+    void generateCode(String owner);
 
     boolean verify(String owner, String code);
 

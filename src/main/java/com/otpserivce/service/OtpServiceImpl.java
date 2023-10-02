@@ -14,16 +14,17 @@ public class OtpServiceImpl implements OtpService {
 
     private final OtpRepository otpRepository;
 
+    private final MqService mqService;
+
     private static final String DECIMAL_FORMAT = "000000";
 
     private static final DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
 
-
     @Override
-    public String generateCode(String owner) {
+    public void generateCode(String owner) {
         final String code = randomCode();
         otpRepository.put(owner, new OtpEntity(owner, code));
-        return code;
+        mqService.publish(owner, code);
     }
 
     @Override
@@ -40,10 +41,12 @@ public class OtpServiceImpl implements OtpService {
     }
 
     private String randomCode() {
+
         String random;
         do {
             random = decimalFormat.format(10000 + Math.random() * 999999);
         } while (otpRepository.contains(random));
         return random;
+
     }
 }

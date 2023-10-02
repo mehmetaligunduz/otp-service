@@ -5,3 +5,6 @@ server:
 
 schedule:
   cron: 0 */30 * ? * *
+
+rabbitmq:
+  publish-url: http://localhost:8082/mq-service/publish

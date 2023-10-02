@@ -15,9 +15,9 @@ public class OtpController {
     private final OtpService otpService;
 
     @PostMapping("/{owner}")
-    public ResponseEntity<String> generateOtp(@PathVariable("owner") String owner) {
-        final String code = otpService.generateCode(owner);
-        return new ResponseEntity<>(code, HttpStatus.OK);
+    public ResponseEntity<Void> generateOtp(@PathVariable("owner") String owner) {
+        otpService.generateCode(owner);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/verify")
